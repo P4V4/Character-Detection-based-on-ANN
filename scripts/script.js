@@ -3,19 +3,10 @@
 
 $(document).ready(function () {
 
-    console.log("Version Alpha 2.0004");
+    console.log("Version Alpha 2.0005");
 
-    $.ajax({
-        type: 'GET',
-        url: 'dataset/dataset.json',
-        data: brain,
-        dataType: 'json',
-        success: function (brain) {
-            console.log(brain);
-        },
-        error: function () {
-            console.log("Failed to load brain dataset");
-        }
+    $.getJSON("dataset/dataset.json", function (json) {
+        console.log(json);
     });
 
     // vars
