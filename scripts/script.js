@@ -3,6 +3,8 @@
 
 $(document).ready(function () {
 
+    console.log("Version Alpha 2.0001)
+
     $.getJSON("dataset/dataset.json", function (brain) {
         console.log("got " + brain.data.length + " letters from brain dataset");
     });
