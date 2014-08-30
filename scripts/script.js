@@ -5,9 +5,14 @@ $(document).ready(function () {
 
     console.log("Version Alpha 2.0001");
 
-    $.getJSON("dataset/dataset.json", function (brain) {
-        console.log("got " + brain.data.length + " letters from brain dataset");
-    });
+    $.getJSON("dataset/dataset.json")
+  .done(function () {
+      console.log("got letters");
+  })
+  .fail(function (jqxhr, textStatus, error) {
+      var err = textStatus + ", " + error;
+      console.log("Request Failed: " + err);
+  });
 
     // vars
     var mousePressed = false;
