@@ -6,7 +6,7 @@ $(document).ready(function () {
     console.log("Version Alpha 2.0002");
 
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         url: 'dataset/dataset.json',
         data: brain,
         dataType: 'json',
