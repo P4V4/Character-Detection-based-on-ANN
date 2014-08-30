@@ -4,7 +4,7 @@
 $(document).ready(function () {
 
     $.getJSON("dataset/dataset.json", function (brain) {
-        console.log("got " + brain.data.length + " letters from brain dataset";
+        console.log("got " + brain.data.length + " letters from brain dataset");
     });
 
     // vars
