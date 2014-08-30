@@ -1,0 +1,11 @@
+﻿#canvasWindow {
+}
+
+#processWindow {
+}
+
+#canvas {
+    background-color: #fff;
+    border: solid 1px #000;
+    cursor: crosshair;
+}
