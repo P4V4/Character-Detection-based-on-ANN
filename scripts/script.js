@@ -7,6 +7,8 @@ $(document).ready(function () {
 
     $.getJSON("dataset/dataset.json", function (json) {
         console.log(json);
+    }).fail(function (jqxhr, textStatus, error) {
+        var err = textStatus + ", " + error; console.log("Request Failed: " + err);
     });
 
     // vars
