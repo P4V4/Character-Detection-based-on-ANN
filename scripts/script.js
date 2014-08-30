@@ -3,9 +3,10 @@
 
 $(document).ready(function () {
 
-    console.log("Version Alpha 2.0003");
+    console.log("Version Alpha 2.0002");
 
     $.ajax({
+        type: 'POST',
         url: 'dataset/dataset.json',
         data: brain,
         dataType: 'json',
