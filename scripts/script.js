@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
 
-    console.log("Version Alpha 2.0002");
+    console.log("Version Alpha 2.0004");
 
     $.ajax({
         type: 'GET',
