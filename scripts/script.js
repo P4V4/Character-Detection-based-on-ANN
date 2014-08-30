@@ -3,15 +3,9 @@
 
 $(document).ready(function () {
 
-    (function () {
-        $.getJSON("dataset/dataset.json", {
-            dataType: "json",
-            data: brain
-        })
-          .done(function () {
-              console.log("Got datasets for 26 letters");
-          });
-    })();
+    $.getJSON("dataset/dataset.json", function (brain) {
+        console.log("got " + brain.data.length + " letters from brain dataset";
+    });
 
     // vars
     var mousePressed = false;
