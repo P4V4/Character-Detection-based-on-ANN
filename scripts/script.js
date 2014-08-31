@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
 
-    console.log("Version Alpha 2.1.0");
+    console.log("Version Beta 2.1.0");
 
     // vars
     var mousePressed = false;
@@ -26,6 +26,14 @@ $(document).ready(function () {
     // the block with 80 datasets
     var id = 0;
     var theBlock = [];
+
+    // probability
+    var probability = [];
+    var probCounter = 0;
+
+    for (prob = 0; prob < 26; prob++) {
+        probability.push({counter: 0, probability: 0, letter: ""});
+    }
 
     for (c = 0; c < 80; c++) {
         theBlock.push({color: 0});
@@ -188,12 +196,14 @@ $(document).ready(function () {
 
         console.log(theBlock);
 
+        /*
         for (d = 0; d < 80; d++) {
             if (theBlock[d].color == 1) {
                 ctx.fillStyle = "#FF0000";
                 ctx.fillRect(theBlock[d].x * Math.round(blockData.blockWidth) + minX - Math.round(blockData.blockWidth), theBlock[d].y * Math.round(blockData.blockHeight) + minY - Math.round(blockData.blockHeight), Math.round(blockData.blockWidth), Math.round(blockData.blockHeight));
             }
         }
+        */
 
         brain();
 
@@ -207,12 +217,66 @@ $(document).ready(function () {
 
             // selectro is following: brain.data[0].letter
             // Math here
+            /*
+            console.log(brain.data[0].blocks[1]);
+            console.log(brain.data[0].blocks[2]);
+            console.log(brain.data[0].blocks[3]);
+            console.log(brain.data[0].blocks[4]);
+            console.log(brain.data[0].blocks[5]);
+            console.log(brain.data[0].blocks[6]);
+            console.log(brain.data[0].blocks[7]);
+            console.log(brain.data[0].blocks[8]);
+            */
 
-            for (e = 0; e <= 25; e++) {
-                console.log(brain.data[e].letter);
+            /*for (e = 0; e <= 25; e++) {
                 // for loop for each letter
                 // selectro is following brain.data[e]
+                console.log(brain.data[e].letter + ": \n");
+                for (f = 0; f < 80; f++) {
+                    if (theBlock[f].color == 1) {
+                        console.log(true);
+                        console.log(brain.data[e].blocks[1]);
+                    }
+                }
+
+            }*/
+
+            for (g = 0; g < 80; g++) {
+                if (theBlock[g].color == 1) {
+                    probCounter++;
+                }
             }
+            console.log(probCounter);
+
+            var highestNum = 0;
+            
+
+
+            for (letter = 0; letter < 26; letter++) {
+                for (i = 0; i < 80; i++) {
+                    if (brain.data[letter].blocks[i] > highestNum) highestNum = brain.data[letter].blocks[i];
+                }
+
+                for (f = 0; f < 80; f++) {
+                    if (theBlock[f].color == 1) {
+                        probability[letter].counter += brain.data[letter].blocks[f + 1];
+                    }
+                }
+                // console.log("Probability for " + brain.data[letter].letter + " is " + ((probability[letter].counter / probCounter) / highestNum));
+                probability[letter].probability = (probability[letter].counter / probCounter) / highestNum;
+                probability[letter].letter = brain.data[letter].letter;
+            }
+
+            probability.sort(function(obj1, obj2) {
+                return obj2.probability - obj1.probability;
+            });
+
+            console.log(probability);
+
+            alert("1. Letter " + probability[0].letter + " probability " + probability[0].probability + " \n2. Letter " + probability[1].letter + " probability " + probability[1].probability + " \n3. Letter " + probability[2].letter + " probability " + probability[2].probability);
+
+
+
 
         }).fail(function (jqxhr, textStatus, error) {
             var err = textStatus + ", " + error; console.log("Request Failed: " + err);
