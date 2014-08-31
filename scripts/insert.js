@@ -1,9 +1,7 @@
-﻿// script by Paco van der Putten
+// script by Paco van der Putten
 // copyright 2014, Paco van der Putten
 
 $(document).ready(function () {
-
-    console.log("Version Alpha 2.1.0");
 
     // vars
     var mousePressed = false;
@@ -200,17 +198,16 @@ $(document).ready(function () {
     }
 
     function brain() {
-        // this is the brain function which processes all inputs based on an artificial neural network with 80 input nodes and 1 output node (winner takes all) 
+        // this function posts values to php which then passes them to the dataset
 
-        $.getJSON("dataset/dataset.json", function (brain) {
-            console.log(brain);
-
-
-            // Math here
-
-
-        }).fail(function (jqxhr, textStatus, error) {
-            var err = textStatus + ", " + error; console.log("Request Failed: " + err);
+        $.ajax({
+            type: 'POST',
+            url: 'insert.php',
+            data: { block: JSON.stringify(theBlock) }
+        }).done(function (data) {
+            console.log(data);
+        }).fail(function () {
+            alert("Failed");
         });
     }
 
