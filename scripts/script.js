@@ -205,9 +205,14 @@ $(document).ready(function () {
         $.getJSON("dataset/dataset.json", function (brain) {
             console.log(brain);
 
-
+            // selectro is following: brain.data[0].letter
             // Math here
 
+            for (e = 0; e <= 25; e++) {
+                console.log(brain.data[e].letter);
+                // for loop for each letter
+                // selectro is following brain.data[e]
+            }
 
         }).fail(function (jqxhr, textStatus, error) {
             var err = textStatus + ", " + error; console.log("Request Failed: " + err);
